@@ -28,9 +28,7 @@ df_consolidado = pd.concat(lista_informes, ignore_index=True)
 print("\nColumnas iniciales:", df_consolidado.columns.tolist())
 
 
-# --------------------------------------------
-# PARTE 3: Renombrar columnas (Sucursal Bogotá tiene nombres distintos)
-# --------------------------------------------
+# PARTE 3: Renombrar columnas
 for i, df in enumerate(lista_informes):
     if 'Fecha_Venta' in df.columns:  # Columna única de Bogotá
         lista_informes[i] = df.rename(columns={
@@ -44,7 +42,7 @@ for i, df in enumerate(lista_informes):
         })
 
 df_consolidado = pd.concat(lista_informes, ignore_index=True)
-print("Columnas corregidas (deben ser exactamente 7):", df_consolidado.columns.tolist())
+print(df_consolidado.columns)
 
 
 # --------------------------------------------
