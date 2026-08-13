@@ -1,5 +1,6 @@
 import pandas as pd
 import glob
+import matplotlib.pyplot as plt
 
 # --------------------------------------------
 # PARTE 1: Buscar y leer los archivos
@@ -76,3 +77,83 @@ print(df_consolidado.isnull().sum())
 # --------------------------------------------
 df_consolidado.to_excel("consolidado_limpio.xlsx", index=False)
 print("\nArchivo guardado con éxito como 'consolidado_limpio.xlsx'")
+
+
+#CONTINUACION
+
+# --------------------------------------------
+# PREGUNTA 1: ¿Cuánto vendió cada categoría en total?
+# (EJEMPLO RESUELTO)
+# --------------------------------------------
+
+ventas_categoria = df_consolidado.groupby('categoria')['precio_unitario'].sum()
+print(ventas_categoria)
+
+ventas_categoria.plot(kind='bar', title='Ventas por Categoria')
+plt.ticklabel_format(style='plain', axis='y')
+plt.ylabel('Ventas totales ($)')
+plt.xlabel('Categoría')
+plt.xticks(rotation=0)
+plt.tight_layout()
+plt.savefig("grafico_categoria.png")
+plt.show()
+
+# --------------------------------------------
+# PREGUNTA 2: ¿Qué porcentaje de las ventas representa 
+# cada vendedor?
+# --------------------------------------------
+print("\n=== PREGUNTA 2: Porcentaje de Ventas por Vendedor ===")
+# Paso 1: agrupen por vendedor y sumen precio_unitario
+ventas_vendedor = df_consolidado.groupby('vendedor')['precio_unitario'].sum()
+
+# Paso 2: impriman el resultado (en porcentaje)
+porcentaje_vendedor = (ventas_vendedor / ventas_vendedor.sum()) * 100
+print(porcentaje_vendedor.round(2))
+
+# Paso 3: hagan un gráfico de torta (pie) con porcentajes
+plt.figure(figsize=(6, 6))
+ventas_vendedor.plot(kind='pie', autopct='%1.1f%%', startangle=140, title='Porcentaje de Ventas por Vendedor')
+plt.ylabel('')
+plt.tight_layout()
+
+# Paso 4: guarden como "grafico_vendedor.png"
+plt.savefig("grafico_vendedor.png")
+plt.close()
+
+
+# --------------------------------------------
+# PREGUNTA 3: ¿Cuál es el producto que más se vende?
+# --------------------------------------------
+print("\n=== PREGUNTA 3: Producto más vendido ===")
+# Paso 1: investiguen la función value_counts()
+# Paso 2: apliquenla a la columna producto
+mas_vendidos = df_consolidado['producto'].value_counts()
+
+# Paso 3: impriman el resultado
+print(mas_vendidos)
+
+
+# --------------------------------------------
+# PREGUNTA 4: ¿Cómo se distribuyen las ventas según 
+# el método de pago?
+# --------------------------------------------
+print("\n=== PREGUNTA 4: Ventas por Método de Pago ===")
+# Paso 1: agrupen por metodo_pago y sumen precio_unitario
+ventas_metodo_pago = df_consolidado.groupby('metodo_pago')['precio_unitario'].sum()
+
+# Paso 2: impriman el resultado
+print(ventas_metodo_pago)
+
+# Paso 3: hagan el gráfico que consideren más apropiado
+plt.figure(figsize=(7, 5))
+ventas_metodo_pago.plot(kind='barh', color='#2ca02c', title='Distribución de Ventas por Método de Pago')
+plt.xlabel('Ventas ($)')
+plt.ylabel('Método de Pago')
+plt.ticklabel_format(style='plain', axis='x')
+plt.tight_layout()
+
+# Paso 4: guarden como "grafico_metodo_pago.png"
+plt.savefig("grafico_metodo_pago.png")
+plt.close()
+
+print("\n¡Ejecución completada! Se han generado los 3 gráficos en tu carpeta.")
