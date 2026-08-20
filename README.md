@@ -26,3 +26,7 @@ python bot.py
 
 * **Vendedor con mayores ingresos:** Camila Ruiz (28.30%).
 * **Productos más populares:** Jean clásico y Cargador USB-C (10 transacciones cada uno).
+
+## Conclusión Final
+
+Se recomienda mantener stock constante de los productos estrella (*Jean clásico* y *Cargador USB-C*) y potenciar las campañas comerciales en la categoría *Electrónica*, por ser la de mayor aporte al volumen general de ingresos.
