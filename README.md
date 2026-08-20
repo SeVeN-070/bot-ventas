@@ -17,3 +17,12 @@ pip install pandas openpyxl matplotlib
 ```bash
 python bot.py
 
+## Resultados y Hallazgos
+
+| Categoría | Total Ventas ($) |
+| :--- | :--- |
+| Electrónica | $3,347,125.00 |
+| Ropa | $2,647,170.83 |
+
+* **Vendedor con mayores ingresos:** Camila Ruiz (28.30%).
+* **Productos más populares:** Jean clásico y Cargador USB-C (10 transacciones cada uno).
