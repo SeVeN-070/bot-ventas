@@ -8,3 +8,12 @@ Para ejecutar este proyecto necesitas Python 3 e instalar las siguientes librer�
 
 ```bash
 pip install pandas openpyxl matplotlib
+
+## Cómo Ejecutar
+
+1. Asegúrate de tener los archivos `.csv` y `.xlsx` de las sucursales en la raíz del proyecto.
+2. Ejecuta el script principal con el comando:
+
+```bash
+python bot.py
+
